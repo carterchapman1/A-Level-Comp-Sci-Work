@@ -1,0 +1,7 @@
+choice = input('Do you want a table(0) or a specific multiplication(1)')
+if choice == '0':
+    multiple = int(input('What times tables do you want to see?\n'))
+    for i in range (12):
+        print(f'{str(multiple)} x {str(i+1)} = {str(multiple*(int(i)+1))}')
+elif choice == '1':
+    multiplication = int(input('What multiplication do you want to see? (x and y)\n'))
