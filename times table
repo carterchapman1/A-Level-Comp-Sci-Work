@@ -1,12 +1,23 @@
 choice = input('Do you want a table(0) or a specific multiplication(1)\n')
+correct_input = 0
 if choice == '0':
-    multiple = int(input('What times tables do you want to see?\n'))
-    for i in range (12):
-        print(f'{str(multiple)} x {str(i+1)} = {str(multiple*(int(i)+1))}')
+    while correct_input == 0:
+        multiple = (input('What times tables do you want to see?\n'))
+        if (multiple.isdigit() == True):
+            for i in range (12):
+                print(f'{str(multiple)} x {str(i+1)} = {str(int(multiple)*(int(i)+1))}')
+            correct_input = 1
+        else:
+            print('Your input was invalid please try again')
 elif choice == '1':
-    entrya = int(input('What is the first multipicator\n'))
-    entryb = int(input('What is the second multipicator\n'))
-    result = int(entrya) * int(entryb)
-    print(f'The result is {result}')
+    while correct_input == 0:
+        entrya = input('What is the first multipicator\n')
+        entryb = input('What is the second multipicator\n')
+        if (entrya.isdigit() == True) and (entryb.isdigit() == True):
+            result = int(entrya) * int(entryb)
+            print(f'The result is {result}')
+            correct_input = 1
+        else:
+            print('One of the inputs was invalid please try again')
 else:
     print('Enter a valid value')
