@@ -1,7 +1,12 @@
-choice = input('Do you want a table(0) or a specific multiplication(1)')
+choice = input('Do you want a table(0) or a specific multiplication(1)\n')
 if choice == '0':
     multiple = int(input('What times tables do you want to see?\n'))
     for i in range (12):
         print(f'{str(multiple)} x {str(i+1)} = {str(multiple*(int(i)+1))}')
 elif choice == '1':
-    multiplication = int(input('What multiplication do you want to see? (x and y)\n'))
+    entrya = int(input('What is the first multipicator\n'))
+    entryb = int(input('What is the second multipicator\n'))
+    result = int(entrya) * int(entryb)
+    print(f'The result is {result}')
+else:
+    print('Enter a valid value')
