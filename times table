@@ -3,8 +3,10 @@ correct_input = 0
 if choice == '0':
     while correct_input == 0:
         multiple = (input('What times tables do you want to see?\n'))
-        if (multiple.isdigit() == True):
-            for i in range (12):
+        amount = input('How much of the times table do you want to see\n')
+        if (multiple.isdigit() == True) and (amount.isdigit() == True):
+            amount = int(amount)
+            for i in range (int(amount)):
                 print(f'{str(multiple)} x {str(i+1)} = {str(int(multiple)*(int(i)+1))}')
             correct_input = 1
         else:
