@@ -11,7 +11,7 @@ def writing(file):
         while finished == '0':
             line = input('Please enter some text line by line\n')
             file.write((line+'\n'))
-            done = (input('Are you done'))
+            done = (input('Are you done\n'))
             if done == 'Yes':
                 finished = '1'
     reading(filename)
@@ -23,5 +23,5 @@ if menu == '1':
 elif menu == '2':
     writing(file)
 else:
-    print('Please input a valid input')
+    print('Please input a valid input\n')
 
