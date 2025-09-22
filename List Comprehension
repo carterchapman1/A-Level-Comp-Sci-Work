@@ -1,0 +1,20 @@
+fruits = ['mango', 'kiwi', 'strawberry', 'guava', 'pineapple', 'mandarin orange']
+print(fruits)
+
+uppercased_fruits = [fruit.upper() for fruit in fruits]
+print(uppercased_fruits)
+
+capitalized_fruits = [fruit.capitalize() for fruit in fruits]
+print(capitalized_fruits)
+
+fiveletter_fruits = [fruit for fruit in fruits if len(fruit) >= 5]
+print(fiveletter_fruits)
+
+five_fruits = [fruit for fruit in fruits if len(fruit) == 5]
+print(five_fruits)
+
+len_fruits = [len(fruit) for fruit in fruits]
+print(len_fruits)
+
+letter_fruits = [fruit for fruit in fruits if 'a' in fruit]
+print(letter_fruits)
