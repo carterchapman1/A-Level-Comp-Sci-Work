@@ -1,7 +1,7 @@
 import math
 
 class Rectangle:
-    def __innit__(self, len, height):
+    def __init__(self, len, height):
         self.len = len
         self.height = height
     
@@ -13,6 +13,7 @@ class Rectangle:
 
     def rectdiagonal(self):
         diag = math.sqrt(self.len^2+self.height^2)
+        print(diag)
 
 r1 = Rectangle(2,3)
 r1.rectdiagonal()
