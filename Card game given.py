@@ -1,6 +1,17 @@
 import random
 import math
 
+class Thing:
+    def __init__(self):
+        self.x = 10
+
+    def __str__(self):
+        return 'A Thing'
+    
+    def __repr__(self):
+        return 'A thing in debug mode'
+        
+
 class Card:
 
 
@@ -59,7 +70,7 @@ class Deck:
         self._card_list.append(new_card)
         
 
-card = Card(0)
+'''card = Card(0)
 deck = Deck()
 deck.shuffle_deck()
 for _ in range(deck.length()):
@@ -67,3 +78,6 @@ for _ in range(deck.length()):
     print(card.get_long_name())
 
 
+'''
+thing = Thing()
+print(thing)
