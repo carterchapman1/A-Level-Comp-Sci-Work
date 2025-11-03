@@ -38,6 +38,10 @@ class Vector:
         vector2 = Vector(6,7)
         print(vector1)
         print(vector2)
+        print(vector1.magnitude())
+        print(vector2.magnitude())
+        sumvector = vector1 + vector2
+        
 
 Vector.test()
 
