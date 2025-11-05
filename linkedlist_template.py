@@ -8,10 +8,10 @@ class Node:
 
 
     def get_next(self):
-        return self._next_node
+        return self._head_node._next_node
 
     def get_data(self):
-        return self._data
+        return self._head_node._data
 
 class LinkedList:
     """
@@ -34,7 +34,7 @@ class LinkedList:
     def pop(self):
         if LinkedList.is_empty(self) == False :
             oldheaddata = Node.get_data(self)
-            self._head_node =  LinkedList(1)
+            self._head_node = Node.get_next(self)
             self._size -= 1
         else:
             oldheaddata = 'empty'
@@ -49,16 +49,7 @@ class LinkedList:
     
     '''def __str__(self):
         """ Defines what should be displayed when the user prints a linked list object. """
-        i = 0
-        string = '['
-        nextnode = self._head_node
-        while i == 0:
-            data = Node.get_data()
-            string = string + data + ','
-            if LinkedList.is_empty() == True:
-                i = 1
-        string = string = ']'
-        return string'''
+        return'''
 
 if __name__ == "__main__":
     my_stack = LinkedList()
