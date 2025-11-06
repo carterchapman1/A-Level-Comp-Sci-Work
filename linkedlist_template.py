@@ -25,6 +25,7 @@ class LinkedList:
         """ Allows the use of len(stack) to find the number of elements in the stack """
         return self._size
 
+
     def push(self, data):
         new_node = Node(data,self._head_node)
         self._head_node = new_node
@@ -47,9 +48,23 @@ class LinkedList:
     def is_empty(self):
         return self._size == 0
     
-    '''def __str__(self):
+    def __str__(self):
         """ Defines what should be displayed when the user prints a linked list object. """
-        return'''
+        size = self._size
+        headnoden = self._head_node
+        for i in range(0, self._size):
+            headdata = Node.get_data(self)
+            if i == 0:
+                print(f"[{headdata},", end=" ")
+            elif i < (self._size - 1):
+                print(f"{headdata},", end=" ")
+            elif i == (self._size - 1):
+                print(f"{headdata}]", end="")
+            self._head_node = Node.get_next(self)
+            size -=1
+        self._head_node = headnoden
+        return ","
+        
 
 if __name__ == "__main__":
     my_stack = LinkedList()
