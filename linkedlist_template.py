@@ -41,7 +41,6 @@ class LinkedList:
             oldheaddata = 'empty'
         return oldheaddata
 
-
     def peek(self):
         return self._head_node
     
@@ -69,13 +68,11 @@ class LinkedList:
 if __name__ == "__main__":
     my_stack = LinkedList()
 
-    my_stack.push(1)
-    my_stack.push(2)
-    my_stack.push(3)
+    for i in range (0,20):
+        my_stack.push(i)
     # my_stack.append(4)
 
     print(my_stack, len(my_stack))
 
     while not my_stack.is_empty():
        print(my_stack.pop())
-
