@@ -1,0 +1,65 @@
+class stockitem:
+
+    def __init__(self,Title:str,Name:str,Onloan:bool):
+        self._title = Title
+        self._Name = Name
+        self._loan = Onloan
+
+    def SetOnLoan(self):
+        self._loan = True
+
+    def ReturnLoan(self):
+        self._loan = False  
+
+    def set_title(self,new_title):
+        self._title = new_title
+
+    def get_title(self):
+        return self._title    
+
+class Book(stockitem):
+    def __init__(self,Title:str,Name:str,ISBM:int,Onloan:bool):
+        super().__init__(Title,Name,Onloan)
+        self._Name = Name
+        self._loan = Onloan
+        self._ID = ISBM
+            
+    def set_title(self,new_title):
+        self._title = new_title
+
+        
+    def Details(self):
+        print(f'The title is {self._title}, the author is called {self._Name}, the IBSM is {self._ID} and on loan ={self._loan}.')
+
+            
+    def __str__(self):
+        return (f"{self._title}, by {self._Name}.")
+        
+class CD(stockitem):
+    def __init__(self,Title:str,Name:str,Length:str,Onloan:bool):
+            super().__init__(Title,Name,Onloan)
+            self._title = Title
+            self._Name = Name
+            self._loan = Onloan
+            self._length = Length
+            
+        
+    def Details(self):
+        print(f'The title is {self._title}, the Artist is called {self._Name}, the length is {self._length} and on loan = {self._loan}.')
+
+            
+    def __str__(self):
+        return (f"{self._title}, by {self._Name}, length of {self._length}.")
+        
+
+def testfunc():
+    book = Book("name",'persom',323232,True)
+    cd = CD('name','person','3m 45s',True)
+
+    items = [book, cd]
+    for item in items:
+        item.Details()
+
+
+
+testfunc()
