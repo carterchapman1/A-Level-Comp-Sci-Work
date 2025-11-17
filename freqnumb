@@ -1,0 +1,12 @@
+numdigits = int(input('How many digits do you want to enter \n'))
+numbers = [0,0,0,0,0,0,0,0,0,0]
+for i in range (0,numdigits):
+    entered = int(input("Enter a digit \n"))
+    numbers[entered] = numbers[entered]+1
+numbers.sort()
+if numbers[9] == numbers[8]:
+    print("Data was multimodel")
+else:
+    print(f"The highest frequency was {numbers[9]}")
+
+

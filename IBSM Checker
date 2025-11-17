@@ -1,0 +1,22 @@
+ISBM_List = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+calculated_digit = 0
+index = 1
+for i in range (0,13):
+    ISBM_Number = int(input('Please enter a ISBM number'))
+    ISBM_List[i] = ISBM_Number
+while index < 12:
+    calculated_digit = calculated_digit + ISBM_List[index]
+    index +=1
+    calculated_digit = calculated_digit + ISBM_List[index] * 3
+while calculated_digit >= 10:
+    calculated_digit -= 10
+calculated_digit = 10 - calculated_digit
+if calculated_digit == 10:
+    calculated_digit = 0
+if calculated_digit == ISBM_List[12]:
+    print("valid IBSM")
+else:
+    print("Invalid IBSM")
+    print(ISBM_List[12])
+    print(calculated_digit)
+
