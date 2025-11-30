@@ -33,7 +33,7 @@ def login_unhandled2(usernumber):
         print("ValueError")
         return
     
-    if number < len(usernames) and number >= 0:
+    if number < len(usernames) and number >= 0: 
         print("Welcome", usernames[number], "user number", number,".")
     else:
         print("IndexError")
@@ -47,8 +47,14 @@ def login_unhandled2(usernumber):
     print(f"301 divided by {number} = {division}")
 
 
+class BadGuyError(Exception):
+    pass
 
-while True:
-    inp = input("\nType in a number: ")
-    login_unhandled(inp)
-    login_unhandled2(inp)
+try:
+    while True:
+        inp = input("\nType in a number: ")
+        login_unhandled(inp)
+except BadGuyError:
+    print("BAD GUY ERROR")    
+        
+
