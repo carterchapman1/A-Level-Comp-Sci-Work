@@ -1,0 +1,16 @@
+list = [0,1,2,3,4,5,6,7,8,9]
+input = int(input("enter a value \n"))
+def binarysearch(list,input):
+    list.sort
+    length = len(list)
+    for i in range (0,length):
+        length = len(list)
+        if list[length//2] == input:
+            return
+            quit()
+        elif list[length//2] > input:
+            list = list[:length//2]
+        elif list[length//2] < input:
+            list = list[length//2:]
+        
+binarysearch(list,input)
