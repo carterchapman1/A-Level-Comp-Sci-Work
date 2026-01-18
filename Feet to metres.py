@@ -3,18 +3,14 @@ import PyQt6.QtCore as qtc
 
 class ConversionTool(qtw.QMainWindow):
 
-    def Go_Button(self, inputmetres):
-        self.On_Go(inputmetres)
-
-    def Number_collector(self,text):
-        return text
-            
-        
-    def Feet_Calculate(self, inputmetres):
+    def feet_Calculate(self, inputmetres):
         try:
             inputmetres = float(inputmetres)
         except ValueError:
-            self.metre_box.setText(str(0))
+            if str(inputmetres) == '':
+                self.metre_box.setText(str(''))
+            else:
+                self.metre_box.setText(str('INVALID'))
         else:
             return self.metre_box.setText(str(float(inputmetres) / 3.281))
 
@@ -25,7 +21,7 @@ class ConversionTool(qtw.QMainWindow):
         layout = qtw.QFormLayout()
         self.Go_Button = qtw.QPushButton()
         self.Feet_Box = qtw.QLineEdit(" ")
-        self.Feet_Box.textChanged.connect(self.Feet_Calculate)
+        self.Feet_Box.textChanged.connect(self.feet_Calculate)
         self.metre_box = qtw.QLabel('')
         layout.addRow("Feet", self.Feet_Box)
         layout.addRow("Metres", self.metre_box)
