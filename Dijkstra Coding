@@ -1,0 +1,61 @@
+import random
+def create_adjancency_matrix(V, E):
+    matrix = [[0]*V for _ in range(V)]
+    for edge in E:
+        u,v = edge
+        randomnumber = random.randint(0,9)
+        matrix[u][v] = randomnumber
+        matrix[v][u] = randomnumber
+    return matrix
+
+vertices = 6
+edges = [(0, 1), (1, 2), (1, 3), (2, 3), (3, 0), (3,2),(3,5),(4,0),(4,2),(5,2),(5,4)]
+matrix = create_adjancency_matrix(vertices,edges)
+for i in range (0,len(matrix)): 
+    print(matrix[i])
+
+def DijkstraAlgorithm(matrix,V,E):
+    location = 0
+    list_visted = []
+    list_tovisit = []
+    for i in range(0,len(matrix)):
+        list_tovisit.append(i)
+    node = 0
+    smallest = 999
+    distance_from_zero = [0,999,999,999,999,999]
+    for i in range(0,len(matrix[0])):
+        if matrix[0][i] != 0:
+            distance_from_zero[i] = matrix[0][i]
+            if smallest > matrix[0][i]:
+                location = i
+                smallest = matrix[0][i]
+    list_tovisit.remove(0)
+    list_visted.append(0)
+    for y in range(1,len(matrix)):
+        smallest = 999
+        for i in range(0,len(matrix[0])):
+            if matrix[location][i] != 0:
+                distancetozero = matrix[location][i] + distance_from_zero[location]
+                if distancetozero < distance_from_zero[i]:
+                    distance_from_zero[i] = distancetozero
+                if matrix[location][i] not in list_visted:
+                    if smallest > matrix[location][i]:
+                        index = i
+                        smallest = matrix[0][i]
+        print(location)
+        print(index)
+        list_tovisit.remove(location)
+        list_visted.append(location)
+        location = index
+
+
+        
+            
+    
+            
+        
+    
+DijkstraAlgorithm(matrix, vertices,edges)
+    
+
+    

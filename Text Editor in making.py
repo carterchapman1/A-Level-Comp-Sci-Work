@@ -1,6 +1,8 @@
 import PyQt6.QtWidgets as qtw
 import PyQt6.QtCore as qtc 
 from PyQt6.QtGui import QTextDocument 
+import PyQt6.QtGui as qtg
+
 
 store = ""
 
@@ -31,7 +33,24 @@ class MainWindow(qtw.QMainWindow):
         layout.addWidget(self.closebtn,3)
 
 
-        
+        save_action = qtg.QAction('Save', self)
+        save_action.setShortcut('Ctrl+S')
+        save_action.triggered.connect(self.save_btn_click)
+
+        menubar = self.menuBar()
+        file_menu = menubar.addMenu("File")
+
+        file_menu.addAction(save_action)
+        file_menu.addSeparator()
+        file_menu.addAction("Open", self.open_btn_click)
+        file_menu.addSeparator()
+        file_menu.addAction("Leave the game", self.close_btn_click)
+
+
+
+
+
+
         
 
         layout.addWidget
