@@ -38,6 +38,25 @@ def add(day,month,year):
         return f'You have {days_till_next} days till your next birthday.'
     else:
         return 'No arguments detected'
+    
+
+@app.route('/birthday')
+def birthday():
+    birthday = datetime.date(request.form['birthday'])
+    date = datetime.date.today()
+    bday_this_year = datetime.date(date.year, birthday.month, birthday.day)
+    bday_next_year = datetime.date(date.year + 1, birthday.month, birthday.day)
+    if bday_this_year > date:
+        nextbirthday = bday_this_year
+    else:
+        nextbirthday = bday_next_year
+    days_till_next = (nextbirthday-date).days
+            
+    #except ValueError:
+        #return 'Invalid data'
+    return f'You have {days_till_next} days till your next birthday.'
+
+
 
 @app.route('/test')
 def test():

@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/whoareyou')
 def get_name():     
-    return render_template('hello_submit_form.html')
+    return render_template('birthday.html')
 
 @app.route('/greet', methods = ['POST'])
 def greet(name=''):
