@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def getbirthday():
-    return render_template('birthday.html')
+    return render_template('comment.html')
 
 
 @app.route('/birthday', methods = ['POST'])
@@ -28,6 +28,19 @@ def birthday():
     #except ValueError:
         #return 'Invalid data'
     return f'You have {days_till_next} days till your next birthday.'
+
+
+@app.route('/comment', methods = ['GET','POST'])
+def comment():
+    with open('comment.txt', 'r') as file:
+            currenttext = file.read() 
+    if request.method == "POST":
+        newtext = request.form.get('text')
+        with open('comment.txt', 'a') as file:
+            file.write("\n" + str(newtext))
+    return render_template('comment.html', comment = currenttext)
+        
+
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=5000, debug=True)
