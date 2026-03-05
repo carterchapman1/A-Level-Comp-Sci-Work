@@ -1,0 +1,12 @@
+UserDigit = int(input('Input a digit between 0 and 99\n'))
+UserMode = input('Calculate additive or multiplicative persistence (a or m)\n')
+Count = 0
+while UserDigit > 9:
+    if UserMode == "a":
+        UserDigit = (UserDigit // 10) + (UserDigit % 10)
+    else:
+        UserDigit = (UserDigit // 10) * (UserDigit % 10)
+    Count += 1
+print(f"The Persistence is {Count}!")
+
+
