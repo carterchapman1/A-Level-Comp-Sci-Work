@@ -30,8 +30,9 @@ print('\nResults found:\n---------')
 cursor = connection.execute(query)
 for row in cursor:
     for i in range(0,6):
-        print(f'{row[0]}: {row[i]}')
-1
+        print(f'| {row[i]} |',end='')
+    print(f'\n')
+
 
 connection.commit()
 connection.close()
