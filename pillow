@@ -1,0 +1,20 @@
+from PIL import Image
+
+image = Image.open("landscape.png")
+
+#Display the image
+image.show()
+
+# Display some information about the image
+print(f'Format: {image.format}, Size: {image.size}, Mode: {image.mode}')
+
+new_image = Image.new('RGB', (255, 255))
+
+pixels = new_image.load()
+
+for y in range(255):
+    for x in range(255):
+        pixels[x, y] = (x, y, 11)
+        print(f'x:{x}, y:{y}, RGB:{pixels[x, y]}')
+
+new_image.show()

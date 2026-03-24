@@ -1,0 +1,8 @@
+from PIL import Image
+import math
+image = Image.new('RGB', (200, 200))
+for x in range (0,200):
+    for y in range (0,200):
+        if 1100 > (x-100)**2 + (y-100)**2:
+            image.putpixel((x,y), 1000)
+image.show()

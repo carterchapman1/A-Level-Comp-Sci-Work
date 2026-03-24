@@ -1,0 +1,21 @@
+from PIL import Image
+
+man = Image.open("shia_labeouf_wants_you_to_get_motivated.jpg")
+background = Image.open("Abingdon_school.jpg")
+w ,h = man.size
+blank = Image.new('RGB', (w,h))
+
+background.resize((w, h))
+pixel1 = man.load()
+pixel2 = background.load()
+for x in range (0,w):
+    for y in range (0,h):
+        (r,g,b) = man.getpixel((x,y))
+        if (r <= 200) and (g >= 200) and (b <= 200):
+            try:
+                blank.putpixel((x,y),background.getpixel((x,y)))
+            except IndexError:
+                blank.putpixel((x,y), 200)
+        else:
+            blank.putpixel((x,y),man.getpixel((x,y)))
+blank.show()

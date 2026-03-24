@@ -1,0 +1,9 @@
+from PIL import Image, ImageDraw
+
+image = Image.new("RGB", (200, 200))
+draw = ImageDraw.Draw(image)
+
+draw.ellipse([(0, 0), (200, 200)], width=10, fill=(100, 125, 100))
+draw.line([(1, 88), (133, 222), (11,223)], width=67, fill=(32, 15, 126))
+
+image.show()

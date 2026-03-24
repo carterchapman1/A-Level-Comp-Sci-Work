@@ -1,0 +1,21 @@
+from PIL import Image
+
+image = Image.open("landscape.png")
+
+print(f'Format: {image.format}, Size: {image.size}, Mode: {image.mode}')
+
+w,h = image.size
+image_flip = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+image_grey = Image.open("landscape.png").convert("L")
+zeroed = Image.new('L', image.size, 0)
+image_red = Image.merge('RGB',(image_grey,zeroed,zeroed))
+for x in range(0,w):
+    for y in range(0,h):
+        #r,g,b = image.getdata((x,y))
+        #image_red.putpixel((x,y),(255,g,b))
+        pass
+
+image.show()
+image_flip.show()
+image_grey.show()
+image_red.show()
