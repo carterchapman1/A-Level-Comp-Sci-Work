@@ -2,10 +2,10 @@ from PIL import Image
 
 man = Image.open("shia_labeouf_wants_you_to_get_motivated.jpg")
 background = Image.open("Abingdon_school.jpg")
-w ,h = man.size
+w,h = man.size
 blank = Image.new('RGB', (w,h))
 
-background.resize((w, h))
+background.resize((w,h))
 pixel1 = man.load()
 pixel2 = background.load()
 for x in range (0,w):
@@ -15,7 +15,7 @@ for x in range (0,w):
             try:
                 blank.putpixel((x,y),background.getpixel((x,y)))
             except IndexError:
-                blank.putpixel((x,y), 200)
+                pass
         else:
             blank.putpixel((x,y),man.getpixel((x,y)))
 blank.show()
