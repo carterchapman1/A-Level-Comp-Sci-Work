@@ -85,6 +85,7 @@ class Breakthrough():
         print("Lock has been solved.  Your score is now:", self.__Score)
         while self.__Discard.GetNumberOfCards() > 0:
             self.__MoveCard(self.__Discard, self.__Deck, self.__Discard.GetCardNumberAt(0))
+        self.__AddGeniusCardToDeck()
         self.__Deck.Shuffle()
         self.__CurrentLock = self.__GetRandomLock()
 
@@ -106,6 +107,7 @@ class Breakthrough():
             for Count in range(5):
                 self.__MoveCard(self.__Deck, self.__Hand, self.__Deck.GetCardNumberAt(0))
             self.__AddDifficultyCardsToDeck()
+            self.__AddGeniusCardToDeck()
             self.__Deck.Shuffle()
             self.__CurrentLock = self.__GetRandomLock()
     
@@ -135,6 +137,13 @@ class Breakthrough():
                 return True
         return False
     
+    def __AddGeniusCardToDeck(self):
+        randomnumber = random.randint(0,3)
+        if randomnumber == 0:
+            self.__Deck.AddCard(GeniusCard())
+        
+
+
     def __SetupCardCollectionFromGameFile(self, LineFromFile, CardCol):
         if len(LineFromFile) > 0:
             SplitLine = LineFromFile.split(",")
@@ -214,10 +223,22 @@ class Breakthrough():
                 print()
                 self.__Discard.AddCard(CurrentCard)
                 CurrentCard.Process(self.__Deck, self.__Discard, self.__Hand, self.__Sequence, self.__CurrentLock, Choice, CardChoice)
+            elif self.__Deck.GetCardDescriptionAt(0) == "Gen":
+                CurrentCard = self.__Deck.RemoveCard(self.__Deck.GetCardNumberAt(0))
+                print()
+                print("Genius Card encountered")
+                print("You can complete any of the challenges!")
+                print(self.__Hand.GetCardDisplay())
+                self.__Deck.DisplayStats()
+                Choice = int(input("Choose challenge number!"))
+                CurrentCard.Process(self.__Deck, self.__Discard, self.__Hand, self.__Sequence, self.__CurrentLock, Choice, CardChoice)
         while self.__Hand.GetNumberOfCards() < 5 and self.__Deck.GetNumberOfCards() > 0:
             if self.__Deck.GetCardDescriptionAt(0) == "Dif":
                 self.__MoveCard(self.__Deck, self.__Discard, self.__Deck.GetCardNumberAt(0))
                 print("A difficulty card was discarded from the deck when refilling the hand.")
+            elif self.__Deck.GetCardDescriptionAt(0) == "Gen":
+                self.__MoveCard(self.__Deck, self.__Discard, self.__Deck.GetCardNumberAt(0))
+                print("A Genius card was discarded from the deck when refilling the hand.")
             else:
                 self.__MoveCard(self.__Deck, self.__Hand, self.__Deck.GetCardNumberAt(0))
         if self.__Deck.GetNumberOfCards() == 0 and self.__Hand.GetNumberOfCards() < 5:
@@ -355,7 +376,17 @@ class Lock():
     
     def GetNumberOfChallenges(self): 
         return len(self._Challenges)
-
+    
+    def ChallengesCompletedAsString(self):
+        completed = ''
+        for i in range(self.GetNumberOfChallenges()):
+            if self.GetChallengeMet(i) == True:
+                completed = completed + 'Y'
+            else:
+                completed = completed + 'N'
+            if i != (self.GetNumberOfChallenges() - 1):
+                completed += ';'
+        return completed
 class Card():
     _NextCardNumber = 0
     
@@ -433,6 +464,17 @@ class DifficultyCard(Card):
             Discard.AddCard(CardToMove)
             Count += 1
 
+class GeniusCard(Card):
+    def __init__(self):
+        self._CardType = "Gen"   
+
+    def GetDescription(self):
+        return self._CardType
+    
+
+    def Process(self, CurrentLock, int(Choice)):
+        self.__CurrentLock.SetChallengeMet((Choice-1), True)
+
 class CardCollection():
     def __init__(self, N):
         self._Name = N
@@ -453,7 +495,7 @@ class CardCollection():
         return self._Cards[X].GetDescription()
 
     def DisplayStats(self):
-        print(f"There are {self.__NumPicks} Picks, {self.__NumFiles} Files, {self.__NumKeys} Keys. There is a {float(self.__NumPicks) / float(len(self._Cards))}% chance of a Pick, {float(self.__NumKeys) / float(len(self._Cards))}% chance of a Key and a {float(self.__NumFiles) / float(len(self._Cards))}% chance of a File. ")
+        print(f"There are {self.__NumPicks} Picks, {self.__NumFiles} Files, {self.__NumKeys} Keys. There is a {float(self.__NumPicks) / float(len(self._Cards))* 100}% chance of a Pick, {float(self.__NumKeys) / float(len(self._Cards))* 100}% chance of a Key and a {float(self.__NumFiles) / float(len(self._Cards))* 100}% chance of a File. ")
 
     def AddCard(self, C):
         self._Cards.append(C)
@@ -478,8 +520,12 @@ class CardCollection():
             self._Cards[RNo1] = self._Cards[RNo2]
             self._Cards[RNo2] = TempCard
 
-
-
+    def CardCollectionReverter(self, Deck, Hand):
+        cardString = ""
+        for i in range(self.GetNumberOfCards):
+                cardString = cardString + self.GetCardDescriptionAt(i) +  ' '  + self.GetCardNumberAt(i) + ','
+        return cardString
+    
     def RemoveCard(self, CardNumber):
         CardFound  = False
         Pos  = 0
